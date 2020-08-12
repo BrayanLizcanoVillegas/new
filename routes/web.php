@@ -17,6 +17,25 @@ Route::get('/', function () {
     return view('inicio');
 });
 
+Route::get('/usuarios', function () {
+    return view('usuario');
+});
+
+Route::get('/refrigeracion', function () {
+    return view('refrigeracion');
+});
+
+Route::get('/contactenos', function () {
+    return view('contactenos');
+});
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
