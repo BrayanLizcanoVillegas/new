@@ -81,17 +81,6 @@
 
     @yield('content')
 
-
-
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand nav-tittle-size" href="{{ url('/') }}">
-                <img src="/img/logo.png" width="70px" height="70px" class="" alt="" loading="lazy">
-                SERVIGAS del Huila
-            </a>
-        </div>
-    </nav>
-
 </body>
 
 </html>
