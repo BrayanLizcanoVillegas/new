@@ -1,6 +1,6 @@
 @extends('layout.layout')
 
-@section('content')
+@section('content')///
 <div class="container mt-5">
     <div class="card bg-dark text-white">
         <img src="img/contacto/1.png" class="card-img" alt="...">
