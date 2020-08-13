@@ -20,6 +20,12 @@ class UsuariosController extends Controller
         return view('usuarios', ['usuarios'=> $usuarios]);
     }
 
+    public function index2()
+    {
+       
+        return view('formulario');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -38,7 +44,15 @@ class UsuariosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $usuariosAgregar = new Usuarios;
+        $usuariosAgregar->nombre = $request->nombre;
+        $usuariosAgregar->apellido = $request->apellido;
+        $usuariosAgregar->direccion = $request->direccion;
+        $usuariosAgregar->correo = $request->correo;
+        $usuariosAgregar->contrasena = $request->contrasena;
+        $usuariosAgregar->id_roles = $request->id_roles;
+        $usuariosAgregar->save();
+        return back()->with('inicio','Gracias por ingresar los datos.');
     }
 
     /**

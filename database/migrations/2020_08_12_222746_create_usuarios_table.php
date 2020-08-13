@@ -20,6 +20,7 @@ class CreateUsuariosTable extends Migration
             $table->string('direccion');
             $table->string('correo');
             $table->string('contrasena');
+            $table->integer('id_roles');
             $table->timestamps();
         });
     }
