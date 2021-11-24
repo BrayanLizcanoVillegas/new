@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Usuarios;
 use App\Formulario;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App;
 
-class UsuariosController extends Controller
+class FormularioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +16,7 @@ class UsuariosController extends Controller
      */
     public function index()
     {
-        $formulario=App\Formulario::all();
-        return view('usuarios',['usuarios'=> $formulario]);
+        return view('formulario');
     }
 
     /**
@@ -47,17 +45,18 @@ class UsuariosController extends Controller
         $usuariosAgregar->telefono = $request->telefono;
         $usuariosAgregar->servicio = $request->servicio;
         $usuariosAgregar->save();
-        return redirect()->route('usuarios')
+        return redirect()->route('home')
                         ->with('success','Gracias por su informacion.');
+        
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Usuarios  $usuarios
+     * @param  \App\Formulario  $formulario
      * @return \Illuminate\Http\Response
      */
-    public function show(Usuarios $usuarios)
+    public function show(Formulario $formulario)
     {
         //
     }
@@ -65,34 +64,45 @@ class UsuariosController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Usuarios  $usuarios
+     * @param  \App\Formulario  $formulario
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-  
+        $usuarioActualizar = App\Formulario::findOrFail($id);
+        return view('editar' , compact('usuarioActualizar'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Usuarios  $usuarios
+     * @param  \App\Formulario  $formulario
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-     
+        $usuarioUpdate = App\Formulario::findOrFail($id);
+        $usuarioUpdate->nombre = $request->nombre;
+        $usuarioUpdate->apellido = $request->apellido;
+        $usuarioUpdate->direccion = $request->direccion;
+        $usuarioUpdate->correo = $request->correo;
+        $usuarioUpdate->telefono = $request->telefono;
+        $usuarioUpdate->servicio = $request->servicio;
+        $usuarioUpdate->save();
+        return back()->with('update' , 'El usuario se ha sido actualizado correctamente');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Usuarios  $usuarios
+     * @param  \App\Formulario  $formulario
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        
+        $usuarioEliminar = App\Formulario::findOrFail($id);
+        $usuarioEliminar->delete();
+        return back()->with('eliminar' , 'El usuario se ha eliminado correctamente');
     }
 }

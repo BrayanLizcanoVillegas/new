@@ -15,35 +15,50 @@
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#agregar">
         Agregar usuarios
-      </button>
+    </button>
       
     
     <table class="table">
       <thead>
         <tr>
           <th scope="col">ID</th>
-          <th scope="col">Nombre</th>
-          <th scope="col">Apellido</th>
-          <th scope="col">Direcciòn</th>
-          <th scope="col">Correo</th>
-          <th scope="col">Contraseña</th>
+          <th scope="col">Nombres</th>
+          <th scope="col">Apellidos</th>
+          <th scope="col">Direcciònes</th>
+          <th scope="col">Correos</th>
+          <th scope="col">Telefonos</th>
+          <th scope="col">Servicios</th>
+          <th scope="col">Acciones</th>
         </tr>
       </thead>
       <tbody>
       @foreach ($usuarios as $user)
       <tr>
       <th scope="row">{{$user->id}}</th>
-          <td>¨{{$user->nombre}}</td>
-          <td>¨{{$user->apellido}}</td>
-          <td>¨{{$user->direccion}}</td>
-          <td>¨{{$user->correo}}</td>
-          <td>¨{{$user->contrasena}}</td>
-      @endforeach
-      </tbody>
-    </table>
-    
-    
-      <!-- Modal -->
+          <td>{{$user->nombre}}</td>
+          <td>{{$user->apellido}}</td>
+          <td>{{$user->direccion}}</td>
+          <td>{{$user->correo}}</td>
+          <td>{{$user->telefono}}</td>
+          <td>{{$user->servicio}}</td>
+          <td>
+            <a href="{{route('editar' , $user->id)}}" class="btn btn-warning">Editar</a>
+            <form action="{{route('eliminar' , $user->id)}}" method="POST" class="d-inline">
+               @method('DELETE')
+               @csrf
+               <button type="submit" class="btn btn-danger">Eliminar</button>
+             </form>
+        </td>   
+      <tr>  
+        @endforeach
+      </table>
+      @if (session('eliminar'))
+          <div class='alert- alert-success mt-3'>
+            {{session('eliminar')}}
+          </div>
+      @endif
+  </div>
+      <!-- Modal agregar-->
       <div class="modal fade" id="agregar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -54,38 +69,90 @@
               </button>
             </div>
             <div class="modal-body">
-            <form action="{{url('usuarios')}}" method="POST">
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Nombre</label>
-                      <input type="text" class="form-control" id="nombre" aria-describedby="emailHelp">
+              <form action="{{ url('usuarios') }}" method="POST">
+                @csrf
+       
+                <div class="form-group">
+                     <input type="text" name="nombre" id="nombre" class="form-control"  placeholder="Nombre" required>
+                </div>
+       
+                @error('nombre')
+                    <div class="alert alert-danger">
+                         El nombre es requerido
                     </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Apellido</label>
-                        <input type="text" class="form-control" id="apellido" aria-describedby="emailHelp">
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">dirección</label>
-                        <input type="text" class="form-control" id="direccion" aria-describedby="emailHelp">
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">correo</label>
-                        <input type="text" class="form-control" id="correo" aria-describedby="emailHelp">
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">contraseña</label>
-                        <input type="text" class="form-control" id="contrasena" aria-describedby="emailHelp">
-                      </div>
-                  </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Agregar</button>
+                @enderror
+       
+                <div class="form-group">
+                     <input type="text" name="apellido" id="apellido" class="form-control"  placeholder="Apellido" required>
+                </div>
+       
+                @error('apellido')
+                    <div class="alert alert-danger">
+                         El apellido es requerido
+                    </div>
+                @enderror
+       
+                <div class="form-group">
+                     <input type="text" name="direccion" id="direccion" class="form-control"  placeholder="Dirección" required>
+                </div>
+       
+                @error('direccion')
+                    <div class="alert alert-danger">
+                         La dirección es requerido
+                    </div>
+                @enderror
+       
+                <div class="form-group">
+                 <input type="text" maxlength="10" name="telefono" id="telefono" class="form-control"  placeholder="Telefono" required>
+                </div>
+       
+                @error('telefono')
+                    <div class="alert alert-danger">
+                     El telefono es requerido
+                    </div>
+                @enderror
+       
+                <div class="form-group">
+                     <input type="text" name="correo" id="correo" class="form-control" placeholder="E-mail/Correo electronico" required>
+                </div>
+       
+                @error('correo')
+                    <div class="alert alert-danger">
+                         El correo es requerido
+                    </div>
+                @enderror
+       
+                <label>Slecione un servicio</label>
+       
+                   <select name="servicio" id="servicio">
+                     <option value="refrigeracion">Gas</option>
+                     <option value="gas">Refrigeración</option>
+                     <option value="otros">Otros</option>
+                   </select>
+                   
+                   @error('servicio')
+                   <div class="alert alert-danger">
+                        El servivcio es requerido
+                   </div>
+               @enderror
+               <br>
+                <button type="submit" class="btn btn-success btn-black">Agregar datos</button>
+           </form>
             </div>
           </div>
         </div>
       </div>
-    
-    
+     @if (session('formulario'))
+       <div class='alert- alert-success mt-3'>
+         {{session('formulario')}}
+       </div>
+     @endif
+      </div>
+    </div>
+  </div>
+</div>
+
+
     
     @endsection
 

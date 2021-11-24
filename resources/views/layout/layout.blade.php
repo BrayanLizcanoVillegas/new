@@ -41,7 +41,7 @@
                     @if (Route::has('login'))
                     @auth
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ url('/home') }}">Escritorio</a>
+                        <a class="nav-link active" href="{{ url('/home') }}">Cuenta</a>
                     </li>
                     @endauth
                     @endif

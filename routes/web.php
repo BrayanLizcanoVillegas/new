@@ -40,9 +40,16 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/usuarios', 'FormularioController@index2')->name('usuarios');
+
+Route::post('/formulario', 'FormularioController@store')->name('store');
+Route::post('/usuarios', 'UsuariosController@store')->name('store');
+Route::get('/formulario', 'FormularioController@index')->name('formulario');
 Route::get('/usuarios', 'UsuariosController@index')->name('usuarios');
 
-Route::get('/formulario', 'UsuariosController@index2')->name('formulario');
+Route::get('editar/{id}' , 'FormularioController@edit')->name('editar');
+Route::put('/update/{id}' , 'FormularioController@update')->name('update');
+Route::delete('/eliminar/{id}', 'FormularioController@destroy')->name('eliminar');
 
 Auth::routes();
 

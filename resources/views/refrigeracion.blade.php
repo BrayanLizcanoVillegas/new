@@ -27,7 +27,7 @@
     <div class="card-body">
       <h5 class="card-title RT">Instalación de aires acondicioandos</h5>
       <p class="card-text RP">Instalamos tu aire acondicionado de una manera segura y en el menor tiempo posible.</p>
-      <a href="#" class="btn btn-primary RP">Solicitar</a>
+      <a href="contactenos" class="btn btn-primary RP">Solicitar</a>
     </div>
   </div>
 
@@ -38,7 +38,7 @@
     <div class="card-body">
       <h5 class="card-title RT">Mantenimiento</h5>
       <p class="card-text RP">Realizamos el mantenimiento preventivo y correctivo de tus aires acondicionados y neveras.</p>
-      <a href="#" class="btn btn-primary RP">Solicitar</a>
+      <a href="contactenos" class="btn btn-primary RP">Solicitar</a>
     </div>
   </div>
 
@@ -49,7 +49,7 @@
     <div class="card-body">
       <h5 class="card-title RT">Reparación de neveras</h5>
       <p class="card-text RP">Enviamos uno de nuestros tecnico para que realice la inspección y reparación de tu nevera.</p>
-      <a href="#" class="btn btn-primary RP">Solicitar</a>
+      <a href="contactenos" class="btn btn-primary RP">Solicitar</a>
     </div>
   </div>
 </div>

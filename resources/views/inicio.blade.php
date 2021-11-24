@@ -92,6 +92,6 @@
     caracteriza por la calidad en la atención y en las reparaciones que realizan nuestros técnicos.</p>
   <hr class="my-4">
   <p>No dudes en contactarnos, te brindaremos en el mejor servicio.</p>
-  <a class="btn btn-primary btn-lg" href="#" role="button">Contactenos</a>
+  <a class="btn btn-primary btn-lg" href="contactenos" role="button">Contactenos</a>
 </div>
 @endsection
